@@ -23,7 +23,26 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   # your steps here
+  Given I am on the RottenPotatoes home page
+  # enter step(s) to uncheck all other checkboxes
+  When I check the following ratings: ratings_G,ratings_PG-13,ratings_NC-17,ratings_R,ratings_PG
+  # enter step to "submit" the search form on the homepage
+  And I press "ratings_submit"
+  And I follow "title_header"
+  # enter step(s) to ensure that PG and R movies are visible
+  Then I should see all of the movies
+  And I should see "Aladdin" before "Amelie"
 
 Scenario: sort movies in increasing order of release date
   # your steps here
+  # your steps here
+  Given I am on the RottenPotatoes home page
+  # enter step(s) to uncheck all other checkboxes
+  When I check the following ratings: ratings_G,ratings_PG-13,ratings_NC-17,ratings_R,ratings_PG
+  # enter step to "submit" the search form on the homepage
+  And I press "ratings_submit"
+  And I follow "release_date_header"
+  # enter step(s) to ensure that PG and R movies are visible
+  Then I should see all of the movies
+  And I should see "Aladdin" before "Amelie"
 
