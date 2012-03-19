@@ -44,8 +44,24 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   And I should not see "Chocolat"
   And I should not see "2001: A Space Odyssey"
   And I should not see "Chicken Run"
+  
 Scenario: no ratings selected
   # see assignment
+  Given I am on the RottenPotatoes home page
+  # enter step(s) to uncheck all other checkboxes
+  When I uncheck the following ratings: ratings_G,ratings_PG-13,ratings_NC-17,ratings_R,ratings_PG
+  # enter step to "submit" the search form on the homepage
+  And I press "ratings_submit"
+  # enter step(s) to ensure that PG and R movies are visible
+  Then I should see none of the movies
 
 Scenario: all ratings selected
   # see assignment
+  # see assignment
+  Given I am on the RottenPotatoes home page
+  # enter step(s) to uncheck all other checkboxes
+  When I check the following ratings: ratings_G,ratings_PG-13,ratings_NC-17,ratings_R,ratings_PG
+  # enter step to "submit" the search form on the homepage
+  And I press "ratings_submit"
+  # enter step(s) to ensure that PG and R movies are visible
+  Then I should see all of the movies

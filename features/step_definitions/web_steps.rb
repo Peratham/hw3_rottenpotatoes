@@ -120,6 +120,15 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   end
 end
 
+Then /^(?:|I )should see all of the movies/ do 
+  assert page.should have_selector('tbody tr', :count => 10)
+end
+
+Then /^(?:|I )should see none of the movies/ do 
+  assert page.should have_no_css('tbody tr')
+end
+
+
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
   if page.respond_to? :should
     page.should have_no_content(text)
